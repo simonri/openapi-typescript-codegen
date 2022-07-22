@@ -42,6 +42,7 @@
         "types/index.d.ts"
     ],
     "scripts": {
+        "prepare": "npm run build",
         "clean": "rimraf ./dist ./test/generated ./test/e2e/generated ./samples/generated ./coverage ./node_modules/.cache",
         "build": "rollup --config --environment NODE_ENV:development",
         "build:watch": "rollup --config --environment NODE_ENV:development --watch",
