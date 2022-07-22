@@ -1,0 +1,32 @@
+{{#if parameters}}
+{{#if @root.useOptions~}}
+{
+{{#each parameters}}
+	{{#onceInList ../parameters name}}
+		{{{name}}}{{#if default}} = {{{default}}}{{/if}},
+	{{/onceInList}}
+{{/each}}
+}: {
+{{#each parameters}}
+	{{#onceInList ../parameters name}}
+		{{#ifdef description deprecated}}
+		/**
+		{{#if description}}
+		 * {{{escapeComment description}}}
+		{{/if}}
+		{{#if deprecated}}
+		 * @deprecated
+		{{/if}}
+		 */
+		{{/ifdef}}
+		{{{name}}}{{>isRequired}}: {{>type}},
+	{{/onceInList}}
+{{/each}}
+}
+{{~else}}
+
+{{#each parameters}}
+{{{name}}}{{>isRequired}}: {{>type}}{{#if default}} = {{{default}}}{{/if}},
+{{/each}}
+{{/if}}
+{{/if}}
